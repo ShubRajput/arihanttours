@@ -1,4 +1,4 @@
-import { Target, Eye, Heart, Users, Award, Plane, TrendingUp, CheckCircle } from 'lucide-react';
+import { Target, Eye, Heart, Users, Award, Plane, TrendingUp, CheckCircle, Shield } from 'lucide-react';
 
 export default function About() {
   const values = [
