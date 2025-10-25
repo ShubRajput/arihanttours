@@ -40,20 +40,30 @@ interface CruiseEnquiry {
   timestamp: string;
 }
 
+interface ContactEnquiry {
+  name: string;
+  email: string;
+  phone: string;
+  destination: string;
+  message: string;
+  timestamp: string;
+}
+
+
 // ---------------------------
 // Constants
 // ---------------------------
 
 const GOOGLE_APPS_SCRIPT_URL =
   import.meta.env.VITE_GOOGLE_SHEETS_URL ||
-  'https://script.google.com/macros/s/AKfycbwOpdCCdhwsCyb8eMo2g-Ge-wXccnt9P79nnYSRy5jV6_DaqVtXxSnPxXXZYmgw6oEp/exec';
+  'https://script.google.com/macros/s/AKfycbz1D3rh9VB1nzpxDW5g7ROnWYi274L7PuE9wnDaZ6o2vxDVkAN6_6tb9dSoXgpjQ8bSDg/exec';
 
 // ---------------------------
 // Generic Submitter
 // ---------------------------
 
 async function submitToGoogleSheet<T extends object>(
-  type: 'flight' | 'hotel' | 'cruise',
+  type: 'flight' | 'hotel' | 'cruise' | 'contact',
   data: Omit<T, 'timestamp'>
 ): Promise<boolean> {
   try {
@@ -102,4 +112,10 @@ export async function submitCruiseEnquiry(
   data: Omit<CruiseEnquiry, 'timestamp'>
 ): Promise<boolean> {
   return submitToGoogleSheet<CruiseEnquiry>('cruise', data);
+}
+
+export async function submitContactEnquiry(
+  data: Omit<ContactEnquiry, 'timestamp'>
+): Promise<boolean> {
+  return submitToGoogleSheet<ContactEnquiry>('contact', data);
 }

@@ -8,6 +8,7 @@ import Videos from './pages/Videos';
 import FlightEnquiry from './pages/FlightEnquiry';
 import HotelEnquiry from './pages/HotelEnquiry';
 import CruiseEnquiry from './pages/CruiseEnquiry';
+import Packages from './pages/Packages';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -26,6 +27,8 @@ function App() {
         return <CruiseEnquiry />;
       case 'about':
         return <About />;
+      case 'packages':
+        return <Packages />;
       case 'contact':
         return <Contact />;
       default:

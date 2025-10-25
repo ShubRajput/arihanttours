@@ -1,33 +1,52 @@
-import { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
+import { useState } from "react";
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from "lucide-react";
+import { submitContactEnquiry } from "../utils/googleSheets";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    destination: '',
-    message: '',
+    name: "",
+    email: "",
+    phone: "",
+    destination: "",
+    message: "",
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitted(true);
-    setTimeout(() => {
+
+    const success = await submitContactEnquiry({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      destination: formData.destination,
+      message: formData.message,
+    });
+
+    if (success) {
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          destination: "",
+          message: "",
+        });
+      }, 3000);
+    } else {
+      alert("Something went wrong. Please try again.");
       setIsSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        destination: '',
-        message: '',
-      });
-    }, 3000);
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -37,36 +56,39 @@ export default function Contact() {
   const contactInfo = [
     {
       icon: MapPin,
-      title: 'Visit Us',
-      details: ['123 Travel Street, Tourism Plaza', 'Mumbai, Maharashtra 400001, India'],
+      title: "Visit Us",
+      details: [
+        "123 Travel Street, Tourism Plaza",
+        "Mumbai, Maharashtra 400001, India",
+      ],
     },
     {
       icon: Phone,
-      title: 'Call Us',
-      details: ['+91 98765 43210', '+91 98765 43211'],
+      title: "Call Us",
+      details: ["+91 98765 43210", "+91 98765 43211"],
     },
     {
       icon: Mail,
-      title: 'Email Us',
-      details: ['info@arihanttours.com', 'support@arihanttours.com'],
+      title: "Email Us",
+      details: ["info@arihanttours.com", "support@arihanttours.com"],
     },
     {
       icon: Clock,
-      title: 'Working Hours',
-      details: ['Mon - Sat: 9:00 AM - 8:00 PM', 'Sunday: 10:00 AM - 6:00 PM'],
+      title: "Working Hours",
+      details: ["Mon - Sat: 9:00 AM - 8:00 PM", "Sunday: 10:00 AM - 6:00 PM"],
     },
   ];
 
   const popularDestinations = [
-    'Santorini, Greece',
-    'Bali, Indonesia',
-    'Paris, France',
-    'Maldives',
-    'Dubai, UAE',
-    'Switzerland',
-    'Thailand',
-    'Singapore',
-    'Other',
+    "Santorini, Greece",
+    "Bali, Indonesia",
+    "Paris, France",
+    "Maldives",
+    "Dubai, UAE",
+    "Switzerland",
+    "Thailand",
+    "Singapore",
+    "Other",
   ];
 
   return (
@@ -97,18 +119,24 @@ export default function Contact() {
             <div>
               <div className="inline-flex items-center space-x-2 bg-orange-100 px-4 py-2 rounded-full mb-6">
                 <Mail className="h-4 w-4 text-orange-600" />
-                <span className="text-orange-600 text-sm font-semibold">CONTACT FORM</span>
+                <span className="text-orange-600 text-sm font-semibold">
+                  CONTACT FORM
+                </span>
               </div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
                 Send Us a Message
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Fill out the form below and our team will get back to you within 24 hours.
+                Fill out the form below and our team will get back to you within
+                24 hours.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
                     Full Name *
                   </label>
                   <input
@@ -125,7 +153,10 @@ export default function Contact() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-semibold text-gray-700 mb-2"
+                    >
                       Email Address *
                     </label>
                     <input
@@ -141,7 +172,10 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-semibold text-gray-700 mb-2"
+                    >
                       Phone Number *
                     </label>
                     <input
@@ -158,7 +192,10 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="destination" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label
+                    htmlFor="destination"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
                     Preferred Destination *
                   </label>
                   <select
@@ -179,7 +216,10 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
                     Your Message *
                   </label>
                   <textarea
@@ -199,8 +239,8 @@ export default function Contact() {
                   disabled={isSubmitted}
                   className={`w-full py-4 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center justify-center space-x-2 ${
                     isSubmitted
-                      ? 'bg-green-500 text-white'
-                      : 'bg-gradient-to-r from-orange-500 to-red-500 text-white hover:shadow-xl hover:scale-105'
+                      ? "bg-green-500 text-white"
+                      : "bg-gradient-to-r from-orange-500 to-red-500 text-white hover:shadow-xl hover:scale-105"
                   }`}
                 >
                   {isSubmitted ? (
@@ -221,7 +261,9 @@ export default function Contact() {
             <div>
               <div className="inline-flex items-center space-x-2 bg-orange-100 px-4 py-2 rounded-full mb-6">
                 <MapPin className="h-4 w-4 text-orange-600" />
-                <span className="text-orange-600 text-sm font-semibold">CONTACT INFO</span>
+                <span className="text-orange-600 text-sm font-semibold">
+                  CONTACT INFO
+                </span>
               </div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
                 Reach Out to Us
@@ -241,7 +283,9 @@ export default function Contact() {
                         <info.icon className="h-6 w-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">{info.title}</h3>
+                        <h3 className="text-lg font-bold text-gray-900 mb-2">
+                          {info.title}
+                        </h3>
                         {info.details.map((detail, idx) => (
                           <p key={idx} className="text-gray-600">
                             {detail}
@@ -259,11 +303,11 @@ export default function Contact() {
                 </h3>
                 <ul className="space-y-3">
                   {[
-                    'Expert travel consultation',
-                    'Customized itineraries',
-                    'Best price guarantee',
-                    'Quick response time',
-                    '24/7 customer support',
+                    "Expert travel consultation",
+                    "Customized itineraries",
+                    "Best price guarantee",
+                    "Quick response time",
+                    "24/7 customer support",
                   ].map((item, index) => (
                     <li key={index} className="flex items-center space-x-3">
                       <CheckCircle className="h-5 w-5 text-orange-600 flex-shrink-0" />
@@ -309,7 +353,8 @@ export default function Contact() {
             Ready to Start Your Journey?
           </h2>
           <p className="text-xl text-gray-200 mb-8">
-            Our travel experts are waiting to help you create unforgettable memories
+            Our travel experts are waiting to help you create unforgettable
+            memories
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

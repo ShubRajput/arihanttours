@@ -29,6 +29,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
     { id: 'cruise-enquiry', label: 'Cruises' },
     { id: 'about', label: 'About Us' },
     { id: 'contact', label: 'Contact Us' },
+    { id: 'packages', label: 'Packages' }
   ];
 
   return (
