@@ -14,6 +14,7 @@ export default function Home() {
   // Background image slider setup
   const [currentImage, setCurrentImage] = useState(0);
   const images = [
+    "https://images.pexels.com/photos/221455/pexels-photo-221455.jpeg",
     "https://images.pexels.com/photos/1450363/pexels-photo-1450363.jpeg",
     "https://images.pexels.com/photos/3250613/pexels-photo-3250613.jpeg",
     "https://images.pexels.com/photos/1005417/pexels-photo-1005417.jpeg?auto=compress&cs=tinysrgb&w=1920",
