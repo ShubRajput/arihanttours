@@ -11,21 +11,67 @@ export default function Contact() {
     message: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
 
-    const success = await submitContactEnquiry({
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      destination: formData.destination,
-      message: formData.message,
-    });
+    setIsSubmitting(true);
+    setIsSubmitted(false);
 
-    if (success) {
+    try {
+      // 1️⃣ Save to Google Sheet
+      const success = await submitContactEnquiry({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        destination: formData.destination,
+        message: formData.message,
+      });
+
+      if (!success) {
+        alert("Something went wrong while saving. Please try again.");
+        setIsSubmitting(false);
+        return;
+      }
+
+      // 2️⃣ Prepare data for Web3Forms email
+      const emailData = {
+        access_key: "55947fb9-037f-428f-bba8-1cb537cd0b1e", // Replace with your Web3Forms Access Key
+        subject: "📩 New Contact Enquiry Received",
+        from_name: formData.name,
+        from_email: formData.email,
+        message: `
+          📩 New Contact Enquiry Details:
+
+          Name: ${formData.name}
+          Email: ${formData.email}
+          Phone: ${formData.phone}
+          Destination: ${formData.destination}
+          Message: ${formData.message}
+        `,
+      };
+
+      // 3️⃣ Send email via Web3Forms
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(emailData),
+      });
+
+      if (!response.ok) throw new Error("Email sending failed");
+
+      console.log("✅ Email triggered via Web3Forms");
+
+      // 4️⃣ Success states
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+
+      // 5️⃣ Reset after delay
       setTimeout(() => {
         setIsSubmitted(false);
         setFormData({
@@ -36,9 +82,10 @@ export default function Contact() {
           message: "",
         });
       }, 3000);
-    } else {
+    } catch (err) {
+      console.error("❌ Submission failed:", err);
       alert("Something went wrong. Please try again.");
-      setIsSubmitted(false);
+      setIsSubmitting(false);
     }
   };
 
@@ -47,10 +94,7 @@ export default function Contact() {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const contactInfo = [
@@ -93,6 +137,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen pt-20">
+      {/* Banner Section */}
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
@@ -113,9 +158,11 @@ export default function Contact() {
         </div>
       </section>
 
+      {/* Form + Info Section */}
       <section className="py-24 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16">
+            {/* Contact Form */}
             <div>
               <div className="inline-flex items-center space-x-2 bg-orange-100 px-4 py-2 rounded-full mb-6">
                 <Mail className="h-4 w-4 text-orange-600" />
@@ -234,12 +281,15 @@ export default function Contact() {
                   ></textarea>
                 </div>
 
+                {/* ✅ Button with all 3 states */}
                 <button
                   type="submit"
-                  disabled={isSubmitted}
+                  disabled={isSubmitting}
                   className={`w-full py-4 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center justify-center space-x-2 ${
                     isSubmitted
                       ? "bg-green-500 text-white"
+                      : isSubmitting
+                      ? "bg-gray-400 text-white cursor-not-allowed"
                       : "bg-gradient-to-r from-orange-500 to-red-500 text-white hover:shadow-xl hover:scale-105"
                   }`}
                 >
@@ -247,6 +297,11 @@ export default function Contact() {
                     <>
                       <CheckCircle className="h-6 w-6" />
                       <span>Message Sent!</span>
+                    </>
+                  ) : isSubmitting ? (
+                    <>
+                      <Send className="h-5 w-5 animate-spin" />
+                      <span>Submitting...</span>
                     </>
                   ) : (
                     <>
@@ -258,6 +313,7 @@ export default function Contact() {
               </form>
             </div>
 
+            {/* Contact Info */}
             <div>
               <div className="inline-flex items-center space-x-2 bg-orange-100 px-4 py-2 rounded-full mb-6">
                 <MapPin className="h-4 w-4 text-orange-600" />
@@ -321,6 +377,7 @@ export default function Contact() {
         </div>
       </section>
 
+      {/* Map */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
@@ -338,6 +395,7 @@ export default function Contact() {
         </div>
       </section>
 
+      {/* Final CTA */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0">
           <img

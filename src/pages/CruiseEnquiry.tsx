@@ -21,8 +21,45 @@ export default function CruiseEnquiry() {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // 1️⃣ Save data to Google Sheet
     const success = await submitCruiseEnquiry(formData);
 
+    // 2️⃣ Prepare data for Web3Forms email
+    const emailData = {
+      access_key: "55947fb9-037f-428f-bba8-1cb537cd0b1e", // Replace with your UUID key from Web3Forms
+      subject: "🛳️ New Cruise Enquiry Received",
+      from_name: formData.name,
+      from_email: "formData.mobile",
+      message: `
+        New Cruise Enquiry Details:
+
+        Name: ${formData.name}
+        Mobile: ${formData.mobile}
+        Destination: ${formData.destination}
+        Departure Date: ${formData.departureDate}
+        Duration: ${formData.duration}
+        Passengers: ${formData.passengers}
+        Cabin Type: ${formData.cabinType}
+        Special Requests: ${formData.specialRequests}
+      `,
+    };
+
+    // 3️⃣ Send the email via Web3Forms API
+    try {
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(emailData),
+      });
+      console.log("✅ Email triggered via Web3Forms");
+    } catch (err) {
+      console.error("❌ Email trigger failed", err);
+    }
+
+    // 4️⃣ Reset form and state
     setIsSubmitting(false);
     setIsSubmitted(true);
 
@@ -40,6 +77,7 @@ export default function CruiseEnquiry() {
       });
     }, 3000);
   };
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
