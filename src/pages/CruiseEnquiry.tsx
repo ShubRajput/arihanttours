@@ -53,11 +53,11 @@ export default function CruiseEnquiry() {
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.pexels.com/photos/163236/luxury-cruise-ship-costa-ricica-163236.jpeg?auto=compress&cs=tinysrgb&w=1920"
+            src="https://images.pexels.com/photos/144237/cruise-ship-cruiser-cruise-ship-144237.jpeg"
             alt="Cruise Booking"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-orange-900/85 to-red-900/85"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-900/85 to-orange-400/85"></div>
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">

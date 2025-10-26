@@ -57,7 +57,7 @@ export default function FlightEnquiry() {
             alt="Flight Booking"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-orange-900/85 to-red-900/85"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-900/85 to-orange-400/85"></div>
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">

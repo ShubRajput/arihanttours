@@ -272,7 +272,7 @@ export default function Home() {
             alt="Adventure"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-orange-900/90 to-red-900/90"></div>
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-orange-900/90 to-orange-400/85"></div> */}
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

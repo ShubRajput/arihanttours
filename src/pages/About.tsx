@@ -72,7 +72,7 @@ export default function About() {
             alt="About Us"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-orange-900/80 to-red-900/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-900/80 to-orange-400/80"></div>
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
