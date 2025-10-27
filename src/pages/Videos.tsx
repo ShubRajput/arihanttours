@@ -20,8 +20,8 @@ export default function Videos() {
       name: 'Bali',
       country: 'Indonesia',
       image: 'https://images.pexels.com/photos/2166559/pexels-photo-2166559.jpeg?auto=compress&cs=tinysrgb&w=800',
-      mainVideoId: 'BXJqXKxmDU8',
-      relatedVideoIds: ['BXJqXKxmDU8', 'TuJJ_p4E-rY', 'w_JSCnF6BGQ', 'VFrcBXDfCJo'],
+      mainVideoId: 'BFS9n4B_2xA',
+      relatedVideoIds: ['sY6BGVE-PBE', 'rgk3o2VX57k', 'GCPBudrVA5s', 'linlz7-Pnvw'],
     },
     {
       id: 'kashmir',
