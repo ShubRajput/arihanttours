@@ -1,41 +1,48 @@
-import { Plane, Facebook, Instagram, Twitter, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Plane, Facebook, Instagram, Twitter, Linkedin, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
 
-export default function Footer() {
+interface FooterProps {
+  onNavigate?: (page: string) => void;
+}
+
+export default function Footer({ onNavigate }: FooterProps) {
   const currentYear = new Date().getFullYear();
+
+  const handleNavigate = (page: string) => {
+    if (onNavigate) {
+      onNavigate(page);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   const footerLinks = {
     company: [
-      { label: 'About Us', href: '#' },
-      { label: 'Our Team', href: '#' },
-      { label: 'Careers', href: '#' },
-      { label: 'Press', href: '#' },
+      { label: 'About Us', page: 'about' },
+      { label: 'Contact Us', page: 'contact' },
     ],
     services: [
-      { label: 'Tour Packages', href: '#' },
-      { label: 'Hotel Booking', href: '#' },
-      { label: 'Flight Booking', href: '#' },
-      { label: 'Travel Insurance', href: '#' },
+      { label: 'Tour Packages', page: 'packages' },
+      { label: 'Flight Booking', page: 'flight-enquiry' },
+      { label: 'Hotel Booking', page: 'hotel-enquiry' },
+      { label: 'Cruise Booking', page: 'cruise-enquiry' },
     ],
-    support: [
-      { label: 'FAQs', href: '#' },
-      { label: 'Contact Us', href: '#' },
-      { label: 'Terms & Conditions', href: '#' },
-      { label: 'Privacy Policy', href: '#' },
+    legal: [
+      { label: 'Terms & Conditions', page: 'terms' },
+      { label: 'Privacy Policy', page: 'privacy' },
     ],
   };
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
+    { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
+    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
+    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
   ];
 
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
-          <div className="lg:col-span-2">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          <div className="lg:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
               <div className="bg-gradient-to-br from-orange-500 to-red-500 p-2 rounded-lg">
                 <Plane className="h-6 w-6 text-white" />
@@ -55,11 +62,15 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-orange-500 flex-shrink-0" />
-                <span className="text-gray-400 text-sm">+91 98765 43210</span>
+                <a href="tel:+919876543210" className="text-gray-400 text-sm hover:text-orange-500 transition-colors">
+                  +91 98765 43210
+                </a>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-orange-500 flex-shrink-0" />
-                <span className="text-gray-400 text-sm">info@arihanttours.com</span>
+                <a href="mailto:info@arihanttours.com" className="text-gray-400 text-sm hover:text-orange-500 transition-colors">
+                  info@arihanttours.com
+                </a>
               </div>
             </div>
           </div>
@@ -69,12 +80,12 @@ export default function Footer() {
             <ul className="space-y-2">
               {footerLinks.company.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-orange-500 transition-colors duration-300 text-sm"
+                  <button
+                    onClick={() => handleNavigate(link.page)}
+                    className="text-gray-400 hover:text-orange-500 transition-colors duration-300 text-sm text-left"
                   >
                     {link.label}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -85,28 +96,28 @@ export default function Footer() {
             <ul className="space-y-2">
               {footerLinks.services.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-orange-500 transition-colors duration-300 text-sm"
+                  <button
+                    onClick={() => handleNavigate(link.page)}
+                    className="text-gray-400 hover:text-orange-500 transition-colors duration-300 text-sm text-left"
                   >
                     {link.label}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-bold mb-4">Support</h3>
+            <h3 className="text-lg font-bold mb-4">Legal</h3>
             <ul className="space-y-2">
-              {footerLinks.support.map((link, index) => (
+              {footerLinks.legal.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-orange-500 transition-colors duration-300 text-sm"
+                  <button
+                    onClick={() => handleNavigate(link.page)}
+                    className="text-gray-400 hover:text-orange-500 transition-colors duration-300 text-sm text-left"
                   >
                     {link.label}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -115,15 +126,31 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm">
-              © {currentYear} Arihant Tours. All rights reserved.
-            </p>
+            <div className="text-center md:text-left">
+              <p className="text-gray-400 text-sm mb-2">
+                © {currentYear} Arihant Tours. All rights reserved.
+              </p>
+              <a
+                href="https://purplemindstech.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-2 text-sm text-gray-500 hover:text-orange-500 transition-colors duration-300 group"
+              >
+                <span>Crafted with passion by</span>
+                <span className="font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent group-hover:from-orange-400 group-hover:to-red-400 transition-all duration-300">
+                  Purple Minds Tech
+                </span>
+                <ExternalLink className="h-3 w-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+              </a>
+            </div>
 
             <div className="flex items-center space-x-4">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={social.label}
                   className="bg-gray-800 p-2 rounded-lg hover:bg-gradient-to-br hover:from-orange-500 hover:to-red-500 transition-all duration-300 transform hover:scale-110"
                 >
