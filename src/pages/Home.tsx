@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   MapPin,
   Globe,
@@ -18,14 +20,20 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import TextType from "../components/AnimationCompo/TextType";
+import ShinyText from "../components/AnimationCompo/ShinnyText";
 
-interface AppProps {
+gsap.registerPlugin(ScrollTrigger);
+
+interface LandingPageProps {
   onNavigate?: (page: string) => void;
 }
 
-export default function App({ onNavigate }: AppProps = {}) {
+export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
   const [currentImage, setCurrentImage] = useState(0);
   const [currentReview, setCurrentReview] = useState(0);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const serviceCardsRef = useRef<HTMLDivElement[]>([]);
 
   const handleNavigate = (page: string) => {
     if (onNavigate) {
@@ -34,8 +42,9 @@ export default function App({ onNavigate }: AppProps = {}) {
   };
 
   const images = [
-    "https://images.pexels.com/photos/221455/pexels-photo-221455.jpeg",
-    "https://images.pexels.com/photos/1450363/pexels-photo-1450363.jpeg",
+    "https://images.pexels.com/photos/2325447/pexels-photo-2325447.jpeg",
+    "https://images.pexels.com/photos/1659438/pexels-photo-1659438.jpeg",
+    "https://images.pexels.com/photos/46160/field-clouds-sky-earth-46160.jpeg",
     "https://images.pexels.com/photos/3250613/pexels-photo-3250613.jpeg",
     "https://images.pexels.com/photos/1005417/pexels-photo-1005417.jpeg?auto=compress&cs=tinysrgb&w=1920",
     "https://images.pexels.com/photos/3408353/pexels-photo-3408353.jpeg?auto=compress&cs=tinysrgb&w=1920",
@@ -47,6 +56,39 @@ export default function App({ onNavigate }: AppProps = {}) {
     }, 5000);
     return () => clearInterval(interval);
   }, [images.length]);
+
+  useEffect(() => {
+    serviceCardsRef.current.forEach((card, index) => {
+      if (card) {
+        gsap.fromTo(
+          card,
+          {
+            opacity: 0,
+            y: 60,
+            scale: 0.95,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1.2,
+            ease: "expo.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+              end: "top 45%",
+              scrub: 0.5,
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   const features = [
     {
@@ -230,7 +272,7 @@ export default function App({ onNavigate }: AppProps = {}) {
   return (
     <div className="min-h-screen">
       {/* HERO SECTION with Sliding Background */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-[90vh] md:h-screen flex items-center justify-center overflow-hidden pt-24 sm:pt-0">
         {images.map((img, index) => (
           <div
             key={index}
@@ -243,39 +285,63 @@ export default function App({ onNavigate }: AppProps = {}) {
               alt="Travel destination"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
           </div>
         ))}
 
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
+        <div className="relative z-10 text-center px-4 sm:px-6 md:px-8 max-w-5xl mx-auto">
           <div className="animate-fade-in-up">
-            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full mb-6 border border-white/20">
+            {/* Badge */}
+            <div className="inline-flex flex-wrap items-center justify-center space-x-2 bg-white/10 backdrop-blur-md px-3 sm:px-4 py-2 rounded-full mb-6 border border-white/20">
               <Sparkles className="h-4 w-4 text-yellow-300" />
-              <span className="text-white text-sm font-medium">
+              <span className="text-white text-xs sm:text-sm font-medium">
                 Trusted by 50,000+ travelers worldwide
               </span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              Your Journey Begins with{" "}
-              <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
-                Arihant Tours
+
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-white mb-4 sm:mb-6 leading-tight text-center">
+              <TextType
+                text={["Plan", "Book", "Travel"]}
+                typingSpeed={80}
+                pauseDuration={1500}
+                showCursor={true}
+                cursorCharacter="."
+              />
+              <br /> With <br />
+              <span className="relative inline-block">
+                <span
+                  ref={titleRef}
+                  className="inline-block tracking-wide bg-gradient-to-r from-orange-400 via-pink-500 to-red-500 bg-clip-text text-transparent animate-gradient-x"
+                  style={{
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    fontFamily: "'Pacifico', cursive", // 👈 use stylish cursive
+                  }}
+                >
+                  Arihant Tours
+                </span>
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed">
+
+            {/* Subtitle */}
+            <p className="text-base sm:text-xl md:text-2xl text-gray-200 mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed">
               Discover extraordinary destinations, create unforgettable
               memories, and experience the world like never before
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center px-2">
               <button
                 onClick={() => handleNavigate("packages")}
-                className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl hover:scale-105 transform transition-all duration-300 flex items-center justify-center space-x-2"
+                className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:shadow-2xl hover:scale-105 transform transition-all duration-300 flex items-center justify-center space-x-2"
               >
                 <span>Explore Destinations</span>
-                <MapPin className="h-5 w-5" />
+                <MapPin className="h-4 w-4 sm:h-5 sm:w-5" />
               </button>
+
               <button
                 onClick={() => handleNavigate("videos")}
-                className="bg-white/10 backdrop-blur-md text-white border-2 border-white/30 px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/20 transition-all duration-300"
+                className="bg-white/10 backdrop-blur-md text-white border-2 border-white/30 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white/20 transition-all duration-300"
               >
                 Watch Video
               </button>
@@ -283,8 +349,9 @@ export default function App({ onNavigate }: AppProps = {}) {
           </div>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-5 h-9 sm:w-6 sm:h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
             <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
           </div>
         </div>
@@ -352,6 +419,9 @@ export default function App({ onNavigate }: AppProps = {}) {
             {services.map((service, index) => (
               <div
                 key={index}
+                ref={(el) => {
+                  if (el) serviceCardsRef.current[index] = el;
+                }}
                 className={`flex flex-col ${
                   index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
                 } gap-8 items-center  rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 group`}
@@ -363,7 +433,7 @@ export default function App({ onNavigate }: AppProps = {}) {
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div
-                    className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-500`}
+                    className={`absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-500`}
                   ></div>
                 </div>
 
