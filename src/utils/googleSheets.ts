@@ -50,20 +50,34 @@ interface ContactEnquiry {
 }
 
 
+interface VillaEnquiry {
+  name: string;
+  mobile: string;
+  location: string;
+  checkIn: string;
+  checkOut: string;
+  guests: string;
+  bedrooms: string;
+  budgetRange: string;
+  specialRequests: string;
+  timestamp: string;
+}
+
+
 // ---------------------------
 // Constants
 // ---------------------------
 
 const GOOGLE_APPS_SCRIPT_URL =
   import.meta.env.VITE_GOOGLE_SHEETS_URL ||
-  'https://script.google.com/macros/s/AKfycbz1D3rh9VB1nzpxDW5g7ROnWYi274L7PuE9wnDaZ6o2vxDVkAN6_6tb9dSoXgpjQ8bSDg/exec';
+  'https://script.google.com/macros/s/AKfycbz3W8XEYzilvckX1S8Yy9-8yOOe595Byw5uXq-eDgclYK2hbL7lsnggJuMsnwhGM1dwlQ/exec';
 
 // ---------------------------
 // Generic Submitter
 // ---------------------------
 
 async function submitToGoogleSheet<T extends object>(
-  type: 'flight' | 'hotel' | 'cruise' | 'contact',
+  type: 'flight' | 'hotel' | 'cruise' | 'contact' | 'villa',
   data: Omit<T, 'timestamp'>
 ): Promise<boolean> {
   try {
@@ -118,4 +132,10 @@ export async function submitContactEnquiry(
   data: Omit<ContactEnquiry, 'timestamp'>
 ): Promise<boolean> {
   return submitToGoogleSheet<ContactEnquiry>('contact', data);
+}
+
+export async function submitVillaEnquiry(
+  data: Omit<VillaEnquiry, 'timestamp'>
+): Promise<boolean> {
+  return submitToGoogleSheet<VillaEnquiry>('villa', data);
 }

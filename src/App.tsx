@@ -9,6 +9,7 @@ import FlightEnquiry from './pages/FlightEnquiry';
 import HotelEnquiry from './pages/HotelEnquiry';
 import CruiseEnquiry from './pages/CruiseEnquiry';
 import Packages from './pages/Packages';
+import VillaEnquiry from './pages/VillaEnquiry';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -25,6 +26,8 @@ function App() {
         return <HotelEnquiry />;
       case 'cruise-enquiry':
         return <CruiseEnquiry />;
+      case 'villa-enquiry':
+        return <VillaEnquiry />;
       case 'about':
         return <About />;
       case 'packages':

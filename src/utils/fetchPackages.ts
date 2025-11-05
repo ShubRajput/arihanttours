@@ -6,7 +6,7 @@ export interface TravelPackage {
   "Image": string;
 }
 
-const GOOGLE_SHEET_PACKAGES_URL = import.meta.env.VITE_GOOGLE_SHEET_PACKAGES_URL || 'https://script.google.com/macros/s/AKfycbxSdAmvgdDGCfBvvPrH0dIQI1FdrRNMOPXFUYx7iD-JX16BdCTR3wc_4uxpBpTD9EnF/exec';
+const GOOGLE_SHEET_PACKAGES_URL = import.meta.env.VITE_GOOGLE_SHEETS_URL || 'https://script.google.com/macros/s/AKfycbz3W8XEYzilvckX1S8Yy9-8yOOe595Byw5uXq-eDgclYK2hbL7lsnggJuMsnwhGM1dwlQ/exec';
 
 export async function fetchPackages(): Promise<TravelPackage[]> {
   try {

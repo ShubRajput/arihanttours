@@ -22,13 +22,14 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
 
   const navItems = [
     { id: 'home', label: 'Home' },
-    { id: 'videos', label: 'Videos' },
     { id: 'flight-enquiry', label: 'Flights' },
     { id: 'hotel-enquiry', label: 'Hotels' },
     { id: 'cruise-enquiry', label: 'Cruises' },
+    { id: 'villa-enquiry', label: 'Villa' },
+    { id: 'packages', label: 'Packages' },
+    { id: 'videos', label: 'Videos' },
     { id: 'about', label: 'About Us' },
-    { id: 'contact', label: 'Contact Us' },
-    { id: 'packages', label: 'Packages' }
+    { id: 'contact', label: 'Contact Us' }
   ];
 
   // Determine navbar background logic
