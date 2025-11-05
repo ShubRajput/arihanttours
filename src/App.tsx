@@ -10,6 +10,8 @@ import HotelEnquiry from './pages/HotelEnquiry';
 import CruiseEnquiry from './pages/CruiseEnquiry';
 import Packages from './pages/Packages';
 import VillaEnquiry from './pages/VillaEnquiry';
+import Terms from './components/Terms';
+import Privacy from './components/Privacy';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -34,6 +36,10 @@ function App() {
         return <Packages />;
       case 'contact':
         return <Contact />;
+      case 'terms':
+      return <Terms />;
+      case 'privacy':
+      return <Privacy />;
       default:
         return <Home onNavigate={setCurrentPage} />;
     }
@@ -43,7 +49,8 @@ function App() {
     <div className="min-h-screen bg-white">
       <Navbar currentPage={currentPage} onNavigate={setCurrentPage} />
       <main>{renderPage()}</main>
-      <Footer />
+      {/* ✅ Pass navigation function to Footer */}
+      <Footer onNavigate={setCurrentPage} />
     </div>
   );
 }

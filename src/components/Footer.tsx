@@ -1,4 +1,14 @@
-import { Plane, Facebook, Instagram, Twitter, Linkedin, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
+import {
+  Plane,
+  Facebook,
+  Instagram,
+  Twitter,
+  Linkedin,
+  Mail,
+  Phone,
+  MapPin,
+  ExternalLink,
+} from "lucide-react";
 
 interface FooterProps {
   onNavigate?: (page: string) => void;
@@ -10,38 +20,41 @@ export default function Footer({ onNavigate }: FooterProps) {
   const handleNavigate = (page: string) => {
     if (onNavigate) {
       onNavigate(page);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   const footerLinks = {
     company: [
-      { label: 'About Us', page: 'about' },
-      { label: 'Contact Us', page: 'contact' },
+      { label: "About Us", page: "about" },
+      { label: "Contact Us", page: "contact" },
     ],
     services: [
-      { label: 'Tour Packages', page: 'packages' },
-      { label: 'Flight Booking', page: 'flight-enquiry' },
-      { label: 'Hotel Booking', page: 'hotel-enquiry' },
-      { label: 'Cruise Booking', page: 'cruise-enquiry' },
+      { label: "Tour Packages", page: "packages" },
+      { label: "Flight Booking", page: "flight-enquiry" },
+      { label: "Hotel Booking", page: "hotel-enquiry" },
+      { label: "Cruise Booking", page: "cruise-enquiry" },
+      { label: "Villa Booking", page: "villa-enquiry" },
     ],
     legal: [
-      { label: 'Terms & Conditions', page: 'terms' },
-      { label: 'Privacy Policy', page: 'privacy' },
+      { label: "Terms & Conditions", page: "terms" },
+      { label: "Privacy Policy", page: "privacy" },
     ],
   };
 
   const socialLinks = [
-    { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
-    { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
-    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+    { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+    { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
   ];
 
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Footer Content */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          {/* Brand Info */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
               <div className="bg-gradient-to-br from-orange-500 to-red-500 p-2 rounded-lg">
@@ -50,31 +63,43 @@ export default function Footer({ onNavigate }: FooterProps) {
               <span className="text-2xl font-bold">Arihant Tours</span>
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Your trusted travel partner since 2008. We specialize in creating unforgettable
-              journeys to destinations around the world.
+              Your trusted travel partner since 2008. We specialize in creating
+              unforgettable journeys to destinations around the world.
             </p>
+
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-orange-500 mt-1 flex-shrink-0" />
                 <span className="text-gray-400 text-sm">
-                  123 Travel Street, Tourism Plaza<br />Mumbai, Maharashtra 400001
+                  123 Travel Street, Tourism Plaza
+                  <br />
+                  Mumbai, Maharashtra 400001
                 </span>
               </div>
+
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-orange-500 flex-shrink-0" />
-                <a href="tel:+919876543210" className="text-gray-400 text-sm hover:text-orange-500 transition-colors">
+                <a
+                  href="tel:+919876543210"
+                  className="text-gray-400 text-sm hover:text-orange-500 transition-colors"
+                >
                   +91 98765 43210
                 </a>
               </div>
+
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-orange-500 flex-shrink-0" />
-                <a href="mailto:info@arihanttours.com" className="text-gray-400 text-sm hover:text-orange-500 transition-colors">
+                <a
+                  href="mailto:info@arihanttours.com"
+                  className="text-gray-400 text-sm hover:text-orange-500 transition-colors"
+                >
                   info@arihanttours.com
                 </a>
               </div>
             </div>
           </div>
 
+          {/* Company Links */}
           <div>
             <h3 className="text-lg font-bold mb-4">Company</h3>
             <ul className="space-y-2">
@@ -91,6 +116,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             </ul>
           </div>
 
+          {/* Services */}
           <div>
             <h3 className="text-lg font-bold mb-4">Services</h3>
             <ul className="space-y-2">
@@ -107,6 +133,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             </ul>
           </div>
 
+          {/* Legal */}
           <div>
             <h3 className="text-lg font-bold mb-4">Legal</h3>
             <ul className="space-y-2">
@@ -124,6 +151,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           </div>
         </div>
 
+        {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-center md:text-left">
