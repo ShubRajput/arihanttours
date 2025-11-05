@@ -21,7 +21,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import TextType from "../components/AnimationCompo/TextType";
-import ShinyText from "../components/AnimationCompo/ShinnyText";
+import DealsOfTheDay from "../components/DealsOfTheDay";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -194,6 +194,21 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
       image:
         "https://images.pexels.com/photos/2265876/pexels-photo-2265876.jpeg?auto=compress&cs=tinysrgb&w=800",
       link: "cruise-enquiry",
+      gradient: "from-orange-500 to-red-500",
+    },
+    {
+      icon: Hotel,
+      title: "Villa Booking",
+      description:
+        "Experience luxurious private villas with personalized service and breathtaking views. Perfect for families, couples, or group getaways.",
+      features: [
+        "Private Pools & Beachfronts",
+        "24/7 Concierge Service",
+        "Exclusive Deals",
+      ],
+      image:
+        "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=800",
+      link: "villa-enquiry",
       gradient: "from-orange-500 to-red-500",
     },
   ];
@@ -396,6 +411,8 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
         </div>
       </section>
 
+      <DealsOfTheDay />
+
       {/* OUR SERVICES - Interactive Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -581,63 +598,6 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
         </div>
       </section>
 
-      {/* DESTINATIONS */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-orange-100 px-4 py-2 rounded-full mb-4">
-              <MapPin className="h-4 w-4 text-orange-600" />
-              <span className="text-orange-600 text-sm font-semibold">
-                POPULAR TOURS
-              </span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Featured Destinations
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Handpicked destinations that will take your breath away
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {destinations.map((destination, index) => (
-              <div
-                key={index}
-                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={destination.image}
-                    alt={destination.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                    <span className="text-sm font-semibold text-orange-600">
-                      {destination.duration}
-                    </span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    {destination.name}
-                  </h3>
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-orange-600">
-                      {destination.price}
-                    </span>
-                    <button
-                      onClick={() => handleNavigate("packages")}
-                      className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 text-sm"
-                    >
-                      View Details
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CUSTOMER REVIEWS */}
       <section className="py-24 bg-white">
