@@ -237,8 +237,8 @@ export default function About() {
           </div>
         </div>
       </section>
-
-      <section className="py-24 bg-gray-50">
+      {/* Our Team */}
+      {/* <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 bg-orange-100 px-4 py-2 rounded-full mb-4">
@@ -275,7 +275,7 @@ export default function About() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
       {/* ===== WHATSAPP FLOATING BUTTON ===== */}
       <a
         href="https://wa.me/916268639659" // replace with your actual WhatsApp number
