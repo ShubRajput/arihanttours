@@ -102,19 +102,27 @@ export default function Contact() {
       icon: MapPin,
       title: "Visit Us",
       details: [
-        "123 Travel Street, Tourism Plaza",
-        "Mumbai, Maharashtra 400001, India",
+        "Branch 1: Shop no. 5, Near IDBI Somwariya, Jaora",
+        "Jaora, MP 457226, India",
+      ],
+    },
+    {
+      icon: MapPin,
+      title: "Visit Us",
+      details: [
+        "Branch 2: Shop no. 10, Chhajed Market, Chandani Chowk",
+        "Ratlam, MP 457001, India",
       ],
     },
     {
       icon: Phone,
       title: "Call Us",
-      details: ["+91 98765 43210", "+91 98765 43211"],
+      details: ["+91 7987323660", "+91 8602413045"],
     },
     {
       icon: Mail,
       title: "Email Us",
-      details: ["info@arihanttours.com", "support@arihanttours.com"],
+      details: ["tourwitharihant@gmail.com", "support@arihanttours.com"],
     },
     {
       icon: Clock,

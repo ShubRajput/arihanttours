@@ -71,9 +71,17 @@ export default function Footer({ onNavigate }: FooterProps) {
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-orange-500 mt-1 flex-shrink-0" />
                 <span className="text-gray-400 text-sm">
-                  123 Travel Street, Tourism Plaza
+                  Branch 1: Shop no. 5, Near IDBI Somwariya, Jaora
                   <br />
-                  Mumbai, Maharashtra 400001
+                  Jaora, MP 457226
+                </span>
+              </div>
+              <div className="flex items-start space-x-3">
+                <MapPin className="h-5 w-5 text-orange-500 mt-1 flex-shrink-0" />
+                <span className="text-gray-400 text-sm">
+                  Branch 2: Shop no. 10, Chhajed Market, Chandani Chowk
+                  <br />
+                  Ratlam, MP 457001
                 </span>
               </div>
 
@@ -90,10 +98,10 @@ export default function Footer({ onNavigate }: FooterProps) {
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-orange-500 flex-shrink-0" />
                 <a
-                  href="mailto:info@arihanttours.com"
+                  href="mailto: tourwitharihant@gmail.com"
                   className="text-gray-400 text-sm hover:text-orange-500 transition-colors"
                 >
-                  info@arihanttours.com
+                  tourwitharihant@gmail.com
                 </a>
               </div>
             </div>
