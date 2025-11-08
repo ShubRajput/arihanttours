@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Plane, Menu, X } from "lucide-react";
+import logo from '../assets/logo.png';
 
 interface NavbarProps {
   currentPage: string;
@@ -18,7 +19,6 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
     handleScroll();
     window.addEventListener("scroll", handleScroll);
 
-    // Scroll to top on navigation
     window.scrollTo({ top: 0, behavior: "smooth" });
 
     return () => window.removeEventListener("scroll", handleScroll);
@@ -36,7 +36,6 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
     { id: "contact", label: "Contact Us" },
   ];
 
-  // Determine navbar background logic
   const isWhiteBackground = currentPage !== "home" || isScrolled;
 
   return (
@@ -49,23 +48,16 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+          {/* ✅ Logo Image */}
           <div
-            className="flex items-center space-x-2 cursor-pointer group"
+            className="flex items-center space-x-3 cursor-pointer"
             onClick={() => onNavigate("home")}
           >
-            <div className="bg-gradient-to-br from-orange-500 to-red-500 p-2 rounded-lg transform group-hover:rotate-12 transition-transform duration-300">
-              <Plane className="h-6 w-6 text-white" />
-            </div>
-            <span
-              className={`text-2xl font-bold ${
-                isWhiteBackground
-                  ? "bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent"
-                  : "text-white drop-shadow-lg"
-              }`}
-            >
-              Arihant Tours
-            </span>
+            <img
+              src={logo}
+              alt="Arihant Tours Logo"
+              className="h-10 w-auto object-contain transition-transform duration-300 hover:scale-105"
+            />
           </div>
 
           {/* Desktop Menu */}
