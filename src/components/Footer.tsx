@@ -71,7 +71,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-orange-500 mt-1 flex-shrink-0" />
                 <span className="text-gray-400 text-sm">
-                  Branch 1: Shop no. 5, Near IDBI Somwariya, Jaora
+                  Branch 1: Shop no. 5, Near IDBI Bank Somwariya, Jaora
                   <br />
                   Jaora, MP 457226
                 </span>
@@ -88,10 +88,10 @@ export default function Footer({ onNavigate }: FooterProps) {
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-orange-500 flex-shrink-0" />
                 <a
-                  href="tel:+919876543210"
+                  href="tel:+917987323660"
                   className="text-gray-400 text-sm hover:text-orange-500 transition-colors"
                 >
-                  +91 98765 43210
+                  +91 7987323660, +91 8602413045, +91 9131422832
                 </a>
               </div>
 
