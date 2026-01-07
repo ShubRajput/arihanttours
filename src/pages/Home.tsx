@@ -116,7 +116,6 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
     },
   ];
 
-
   const stats = [
     { icon: Users, value: "50,000+", label: "Happy Travelers" },
     { icon: MapPin, value: "500+", label: "Destinations" },
@@ -256,24 +255,22 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
 
   return (
     <div className="min-h-screen">
-      {/* HERO SECTION with Sliding Background */}
+      {/* HERO SECTION with Video Background */}
       <section className="relative h-[90vh] md:h-screen flex items-center justify-center overflow-hidden pt-24 sm:pt-0">
-        {images.map((img, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              index === currentImage ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <img
-              src={img}
-              alt="Travel destination"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
-          </div>
-        ))}
+        {/* Background Video */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          src="/hero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
 
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
+
+        {/* Content */}
         <div className="relative z-10 text-center px-4 sm:px-6 md:px-8 max-w-5xl mx-auto">
           <div className="animate-fade-in-up">
             {/* Badge */}
@@ -300,7 +297,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
                   style={{
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
-                    fontFamily: "'Pacifico', cursive", // 👈 use stylish cursive
+                    fontFamily: "'Pacifico', cursive",
                   }}
                 >
                   Arihant Tours
@@ -335,7 +332,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
           <div className="w-5 h-9 sm:w-6 sm:h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
             <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
           </div>
@@ -567,7 +564,6 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
           </div>
         </div>
       </section>
-
 
       {/* CUSTOMER REVIEWS */}
       <section className="py-24 bg-white">
