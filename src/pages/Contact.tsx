@@ -122,7 +122,7 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email Us",
-      details: ["tourwitharihant@gmail.com", "support@arihanttours.com"],
+      details: ["tourwitharihant@gmail.com"],
     },
     {
       icon: Clock,

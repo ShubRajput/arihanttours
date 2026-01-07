@@ -80,7 +80,7 @@ export default function Privacy() {
               <h2 className="text-2xl font-bold text-gray-900 mb-3">Contact Us</h2>
               <p>
                 If you have questions about this Privacy Policy or wish to exercise your rights, please contact us
-                at info@arihanttours.com or +91 98765 43210.
+                at tourwitharihant@gmail.com or +91 7987323660/+91 8602413045.
               </p>
             </section>
           </div>

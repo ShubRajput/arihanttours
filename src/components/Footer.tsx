@@ -43,10 +43,8 @@ export default function Footer({ onNavigate }: FooterProps) {
   };
 
   const socialLinks = [
-    { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-    { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+    { icon: Facebook, href: "https://www.facebook.com/share/1FM4ntukvA/", label: "Facebook" },
+    { icon: Instagram, href: "https://www.instagram.com/tourwitharihant?igsh=MXB5N2E2bzdzYTJhZA==", label: "Instagram" }
   ];
 
   return (
@@ -167,7 +165,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                 © {currentYear} Arihant Tours. All rights reserved.
               </p>
               <a
-                href="https://purplemindstech.com"
+                href="https://purplemindstech.in"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-2 text-sm text-gray-500 hover:text-orange-500 transition-colors duration-300 group"

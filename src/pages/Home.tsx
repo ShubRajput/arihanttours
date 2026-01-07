@@ -58,7 +58,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
   }, [images.length]);
 
   useEffect(() => {
-    serviceCardsRef.current.forEach((card, index) => {
+    serviceCardsRef.current.forEach((card) => {
       if (card) {
         gsap.fromTo(
           card,
@@ -116,36 +116,6 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
     },
   ];
 
-  const destinations = [
-    {
-      name: "Santorini, Greece",
-      image:
-        "https://images.pexels.com/photos/161815/santorini-oia-greece-water-161815.jpeg?auto=compress&cs=tinysrgb&w=800",
-      price: "From $1,299",
-      duration: "7 Days",
-    },
-    {
-      name: "Bali, Indonesia",
-      image:
-        "https://images.pexels.com/photos/2166559/pexels-photo-2166559.jpeg?auto=compress&cs=tinysrgb&w=800",
-      price: "From $899",
-      duration: "6 Days",
-    },
-    {
-      name: "Paris, France",
-      image:
-        "https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg?auto=compress&cs=tinysrgb&w=800",
-      price: "From $1,599",
-      duration: "5 Days",
-    },
-    {
-      name: "Maldives",
-      image:
-        "https://images.pexels.com/photos/3155666/pexels-photo-3155666.jpeg?auto=compress&cs=tinysrgb&w=800",
-      price: "From $2,499",
-      duration: "8 Days",
-    },
-  ];
 
   const stats = [
     { icon: Users, value: "50,000+", label: "Happy Travelers" },
@@ -240,7 +210,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
   const reviews = [
     {
       name: "Sarah Johnson",
-      location: "New York, USA",
+      location: "Indore, India",
       rating: 5,
       text: "Arihant Tours made our dream vacation to Bali a reality! Every detail was perfect, from the flight bookings to the stunning resort. The team was incredibly responsive and helpful throughout our journey.",
       image:
@@ -248,8 +218,8 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
       trip: "Bali Luxury Package",
     },
     {
-      name: "Michael Chen",
-      location: "Singapore",
+      name: "Piyush Verma",
+      location: "Pune, India",
       rating: 5,
       text: "Outstanding service! The cruise booking was seamless and the recommendations were spot-on. We had the most amazing Mediterranean experience. Will definitely book again for our next adventure!",
       image:
@@ -267,7 +237,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
     },
     {
       name: "David Martinez",
-      location: "Barcelona, Spain",
+      location: "Banglore, India",
       rating: 5,
       text: "Incredible experience from start to finish! The team found us the best flight deals and the hotel exceeded our expectations. Their 24/7 support gave us peace of mind throughout our trip.",
       image:

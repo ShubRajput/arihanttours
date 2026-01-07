@@ -18,7 +18,7 @@ const Packages: React.FC = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-[80vh] bg-gradient-to-br from-blue-50 to-white">
-        <ClipLoader color="#2563eb" size={60} />
+        <ClipLoader color="#f97316" size={60} />
       </div>
     );
   }
