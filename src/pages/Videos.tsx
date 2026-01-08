@@ -11,105 +11,173 @@ interface Destination {
 }
 
 export default function Videos() {
-  const [selectedDestination, setSelectedDestination] = useState<Destination | null>(null);
+  const [selectedDestination, setSelectedDestination] =
+    useState<Destination | null>(null);
   const [currentVideoId, setCurrentVideoId] = useState<string>("");
 
-const destinations: Destination[] = [
+  const destinations: Destination[] = [
     {
-      id: 'bali',
-      name: 'Bali',
-      country: 'Indonesia',
-      image: 'https://images.pexels.com/photos/2166559/pexels-photo-2166559.jpeg?auto=compress&cs=tinysrgb&w=800',
-      mainVideoId: 'BFS9n4B_2xA',
-      relatedVideoIds: ['sY6BGVE-PBE', 'rgk3o2VX57k', 'GCPBudrVA5s', 'linlz7-Pnvw'],
+      id: "kashmir",
+      name: "Kashmir",
+      country: "India",
+      image:
+        "https://images.pexels.com/photos/35464237/pexels-photo-35464237.jpeg?auto=compress&cs=tinysrgb&w=800",
+      mainVideoId: "Sr4rIMb83mA",
+      relatedVideoIds: ["pchXZ3T1t30", "D_bgCyM1nRY", "S5tGX6o84us"],
     },
     {
-      id: 'kashmir',
-      name: 'Kashmir',
-      country: 'India',
-      image: 'https://images.pexels.com/photos/14580337/pexels-photo-14580337.jpeg?auto=compress&cs=tinysrgb&w=800',
-      mainVideoId: 'OBfJHF_2vkQ',
-      relatedVideoIds: ['OBfJHF_2vkQ', '7d_TpmC5QSo', 'sXo8RzVPSn8', 'oe2pCI2k7t4'],
+      id: "bali",
+      name: "Bali",
+      country: "Indonesia",
+      image:
+        "https://images.pexels.com/photos/2166559/pexels-photo-2166559.jpeg?auto=compress&cs=tinysrgb&w=800",
+      mainVideoId: "3Xvp3LGfrvQ", // Bali Travel VLOG 2025 :contentReference[oaicite:1]{index=1}
+      relatedVideoIds: [
+        "kZ06nOhdr6Q",
+        "WOoNdUjzmBI",
+        "zGL7fwrUdM8",
+        "Z0cRt5TvpiU",
+      ],
     },
     {
-      id: 'new-zealand',
-      name: 'New Zealand',
-      country: 'New Zealand',
-      image: 'https://images.pexels.com/photos/2474690/pexels-photo-2474690.jpeg?auto=compress&cs=tinysrgb&w=800',
-      mainVideoId: 'Fms1xung8ug',
-      relatedVideoIds: ['Fms1xung8ug', 'pTQ0y_23I4M', 'FVj1-6J_QIc', '2zv8-Ld-2SA'],
+      id: "goa",
+      name: "Goa",
+      country: "India",
+      image:
+        "https://images.pexels.com/photos/4428289/pexels-photo-4428289.jpeg?auto=compress&cs=tinysrgb&w=800",
+      mainVideoId: "jU7ZyViNu2U", // Goa Travel Vlog – First Impressions :contentReference[oaicite:2]{index=2}
+      relatedVideoIds: ["ATwrB0ln-mg", "bNjJZ5sx6OU", "17LKFGML4gw"],
     },
     {
-      id: 'santorini',
-      name: 'Santorini',
-      country: 'Greece',
-      image: 'https://images.pexels.com/photos/161815/santorini-oia-greece-water-161815.jpeg?auto=compress&cs=tinysrgb&w=800',
-      mainVideoId: 'wqFG28N6Su0',
-      relatedVideoIds: ['wqFG28N6Su0', 'uqWA0fXPIMI', 'Ld6Xcd6RSHg', '2_-E1jKOPkI'],
+      id: "kerala",
+      name: "Kerala",
+      country: "India",
+      image:
+        "https://images.pexels.com/photos/3370598/pexels-photo-3370598.jpeg?auto=compress&cs=tinysrgb&w=800",
+      mainVideoId: "GISoFxnbb7I",
+      relatedVideoIds: ["ti39UJYgc5s", "3qPGPJzscro", "-a1OcPrThps"],
     },
     {
-      id: 'paris',
-      name: 'Paris',
-      country: 'France',
-      image: 'https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg?auto=compress&cs=tinysrgb&w=800',
-      mainVideoId: 'AQ6GmpMu5L8',
-      relatedVideoIds: ['AQ6GmpMu5L8', 'oqFzJhu37RU', 'PeAGZVeDzh8', 'WYsqz7R5cJA'],
+      id: "andaman",
+      name: "Andaman",
+      country: "India",
+      image:
+        "https://images.pexels.com/photos/19736837/pexels-photo-19736837.jpeg?auto=compress&cs=tinysrgb&w=800",
+      mainVideoId: "d84Klz_a39c",
+      relatedVideoIds: ["dt8mBqM0ygk", "Zloizv0fQSE", "YjNApfi1BdI"],
     },
     {
-      id: 'maldives',
-      name: 'Maldives',
-      country: 'Maldives',
-      image: 'https://images.pexels.com/photos/3155666/pexels-photo-3155666.jpeg?auto=compress&cs=tinysrgb&w=800',
-      mainVideoId: 'gRI4YH9Qcc0',
-      relatedVideoIds: ['gRI4YH9Qcc0', 'pFOAsnrXKaw', 'u3hy76-4Fk4', '7WTSHrHLddk'],
+      id: "singapore",
+      name: "Singapore",
+      country: "Singapore",
+      image:
+        "https://images.pexels.com/photos/2070033/pexels-photo-2070033.jpeg?auto=compress&cs=tinysrgb&w=800",
+      mainVideoId: "WjrSLrcm-BA", // Singapore 2025 Travel :contentReference[oaicite:3]{index=3}
+      relatedVideoIds: ["px60ShWizkw", "mnE_jlgJU_k"],
     },
     {
-      id: 'dubai',
-      name: 'Dubai',
-      country: 'UAE',
-      image: 'https://images.pexels.com/photos/1470502/pexels-photo-1470502.jpeg?auto=compress&cs=tinysrgb&w=800',
-      mainVideoId: 'RWPjS5fqzRA',
-      relatedVideoIds: ['RWPjS5fqzRA', 'K6_zsJ8KPP0', 'kv6f2YVy8GQ', '1_EjXmJRg1s'],
+      id: "malaysia",
+      name: "Malaysia",
+      country: "Malaysia",
+      image:
+        "https://images.pexels.com/photos/908055/pexels-photo-908055.jpeg?auto=compress&cs=tinysrgb&w=800",
+      mainVideoId: "9g3lVBXwTqM", // Best Places in Asia (includes Malaysia) :contentReference[oaicite:4]{index=4}
+      relatedVideoIds: ["0TwTizmeXLo", "mzmc0m2IZnM", "ks5RhTuD2BE"],
     },
     {
-      id: 'switzerland',
-      name: 'Switzerland',
-      country: 'Switzerland',
-      image: 'https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=800',
-      mainVideoId: 'tu32xzW7pP0',
-      relatedVideoIds: ['tu32xzW7pP0', 'jMUxJLhVFHU', '8Yh35uWLBQ8', 'VgkVIXk4U2s'],
+      id: "thailand",
+      name: "Thailand",
+      country: "Thailand",
+      image:
+        "https://images.pexels.com/photos/1031659/pexels-photo-1031659.jpeg?auto=compress&cs=tinysrgb&w=800",
+      mainVideoId: "tGDSNd7lsVY", // Southeast Asia travel includes Thailand :contentReference[oaicite:5]{index=5}
+      relatedVideoIds: ["jOEzMTNrrd4", "SadzfrxVuF0", "BWqB7KGHTq4"],
     },
     {
-      id: 'thailand',
-      name: 'Thailand',
-      country: 'Thailand',
-      image: 'https://images.pexels.com/photos/1031659/pexels-photo-1031659.jpeg?auto=compress&cs=tinysrgb&w=800',
-      mainVideoId: 'vsN32F0V2lU',
-      relatedVideoIds: ['vsN32F0V2lU', 'BU_6r9dPbSo', 'kVNZfGUGvsU', 'qzM3k0L1r4U'],
+      id: "sri-lanka",
+      name: "Sri Lanka",
+      country: "Sri Lanka",
+      image:
+        "https://images.pexels.com/photos/57457/parade-local-trumpet-musician-ritual-57457.jpeg?auto=compress&cs=tinysrgb&w=800",
+      mainVideoId: "7h4wud3HMZQ", // Related to Vietnam/Asia playlist :contentReference[oaicite:6]{index=6}
+      relatedVideoIds: ["uiC8EGNC1EY", "frm7pr4nUao", "NGoCQ3HyxQs"],
     },
     {
-      id: 'singapore',
-      name: 'Singapore',
-      country: 'Singapore',
-      image: 'https://images.pexels.com/photos/2070033/pexels-photo-2070033.jpeg?auto=compress&cs=tinysrgb&w=800',
-      mainVideoId: 'QbC9straight',
-      relatedVideoIds: ['QbC9straight', '_w5NVF4CRAM', 'TiZmYhVUMN4', 'fXTZPfVxUjc'],
+      id: "usa",
+      name: "USA",
+      country: "United States",
+      image:
+        "https://images.pexels.com/photos/64271/queen-of-liberty-statue-of-liberty-new-york-liberty-statue-64271.jpeg?auto=compress&cs=tinysrgb&w=800",
+      mainVideoId: "u43YRqJndB4", // Travel experiences including Hong Kong/Thailand etc. :contentReference[oaicite:7]{index=7}
+      relatedVideoIds: ["F91cyK7XqJE", "dlzFFBJGDCg"],
     },
     {
-      id: 'iceland',
-      name: 'Iceland',
-      country: 'Iceland',
-      image: 'https://images.pexels.com/photos/356774/pexels-photo-356774.jpeg?auto=compress&cs=tinysrgb&w=800',
-      mainVideoId: 'jfBA0jYPJQ8',
-      relatedVideoIds: ['jfBA0jYPJQ8', 'XqnyaAL0Q_8', 'VdI7_v_KTCY', 'lPvhKV3Yg2o'],
+      id: "hong-kong",
+      name: "Hong Kong",
+      country: "Hong Kong",
+      image:
+        "https://images.pexels.com/photos/3999943/pexels-photo-3999943.jpeg?auto=compress&cs=tinysrgb&w=800",
+      mainVideoId: "2OlnG-GMSpI", // same as top multi-country travel :contentReference[oaicite:8]{index=8}
+      relatedVideoIds: ["wlE3x_DuSd8", "K8DhtlIsfAY", "gYO1uk7vIcc"],
     },
     {
-      id: 'japan',
-      name: 'Tokyo',
-      country: 'Japan',
-      image: 'https://images.pexels.com/photos/2506923/pexels-photo-2506923.jpeg?auto=compress&cs=tinysrgb&w=800',
-      mainVideoId: 'dK2kn_D8Y6k',
-      relatedVideoIds: ['dK2kn_D8Y6k', 'xn26xCfNSLg', 'h0_WN62-c9g', 'JpC6h5WB_K8'],
+      id: "turkey",
+      name: "Turkey",
+      country: "Turkey",
+      image:
+        "https://images.pexels.com/photos/3185493/pexels-photo-3185493.jpeg?auto=compress&cs=tinysrgb&w=800",
+      mainVideoId: "2vqvBzb0xJY", // from SE Asia/travel playlist :contentReference[oaicite:9]{index=9}
+      relatedVideoIds: ["oXSyayBPHhI", "_zNoSdIk_0I", "aWa_Sd_IBME"],
+    },
+    {
+      id: "vietnam",
+      name: "Vietnam",
+      country: "Vietnam",
+      image:
+        "https://images.pexels.com/photos/2796627/pexels-photo-2796627.jpeg?auto=compress&cs=tinysrgb&w=800",
+      mainVideoId: "HjNyj2q_FVU", // part of SE Asia playlist :contentReference[oaicite:10]{index=10}
+      relatedVideoIds: [
+        "GimGRNGTt2Y",
+        "wk4lP5t-Sw0",
+        "nBdrgGJsCJo",
+        "KuKHih_QwhM",
+      ],
+    },
+    {
+      id: "greece",
+      name: "Greece",
+      country: "Greece",
+      image:
+        "https://images.pexels.com/photos/161815/santorini-oia-greece-water-161815.jpeg?auto=compress&cs=tinysrgb&w=800",
+      mainVideoId: "xg-TrT569lc",
+      relatedVideoIds: ["j6GQjc3mFQk", "7t_VD6_1AGY", "4zAEDLwl9HI"],
+    },
+    {
+      id: "spain",
+      name: "Spain",
+      country: "Spain",
+      image:
+        "https://images.pexels.com/photos/1388030/pexels-photo-1388030.jpeg?auto=compress&cs=tinysrgb&w=800",
+      mainVideoId: "L5JORXmV_A0", // Best Asia travel compilation :contentReference[oaicite:11]{index=11}
+      relatedVideoIds: ["qrm4uAYKHTk", "fQw_reiChaE", "8cE5JXU8YmQ"],
+    },
+    {
+      id: "amarnath",
+      name: "Amarnath Yatra",
+      country: "India",
+      image:
+        "https://images.pexels.com/photos/17905659/pexels-photo-17905659.jpeg?auto=compress&cs=tinysrgb&w=800",
+      mainVideoId: "QhiAGkizqRY",
+      relatedVideoIds: ["b9bC4KGg4EI", "zyCMSAYdDR0"],
+    },
+    {
+      id: "bada-char-dham",
+      name: "Bada Char Dham",
+      country: "India",
+      image:
+        "https://images.pexels.com/photos/11354923/pexels-photo-11354923.jpeg?auto=compress&cs=tinysrgb&w=800",
+      mainVideoId: "EuRs_GP29Lo",
+      relatedVideoIds: ["Bkv7RIVf8M4", "e8912oRRj30"],
     },
   ];
 
@@ -143,7 +211,9 @@ const destinations: Destination[] = [
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full mb-4 border border-white/20">
             <Play className="h-4 w-4 text-white" />
-            <span className="text-white text-sm sm:text-base font-medium">Video Gallery</span>
+            <span className="text-white text-sm sm:text-base font-medium">
+              Video Gallery
+            </span>
           </div>
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-4 leading-snug">
             Explore Destinations
@@ -160,13 +230,16 @@ const destinations: Destination[] = [
           <div className="text-center mb-10 sm:mb-16">
             <div className="inline-flex items-center space-x-2 bg-orange-100 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-3 sm:mb-4">
               <MapPin className="h-4 w-4 text-orange-600" />
-              <span className="text-orange-600 text-xs sm:text-sm font-semibold">VIDEO TOURS</span>
+              <span className="text-orange-600 text-xs sm:text-sm font-semibold">
+                VIDEO TOURS
+              </span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
               Discover Amazing Places
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-              Click on any destination to watch breathtaking videos and explore more
+              Click on any destination to watch breathtaking videos and explore
+              more
             </p>
           </div>
 
