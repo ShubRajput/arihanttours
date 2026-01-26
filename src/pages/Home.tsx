@@ -80,7 +80,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
               scrub: 0.5,
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
       }
     });
@@ -271,15 +271,11 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
         {/* <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div> */}
 
         {/* Content */}
-       
-
-       
       </section>
 
       {/*DEALS OF THE DAY */}
 
       <DealsOfTheDay />
-     
 
       {/* STATS SECTION */}
       <section className="py-20 bg-white">
@@ -300,7 +296,6 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
           </div>
         </div>
       </section>
-
 
       {/* OUR SERVICES - Interactive Section */}
       <section className="py-24 bg-white">
@@ -328,55 +323,59 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
                 ref={(el) => {
                   if (el) serviceCardsRef.current[index] = el;
                 }}
-                className={`flex flex-col ${
+                className={`group relative flex flex-col ${
                   index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                } gap-8 items-center  rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 group`}
+                } gap-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.25)] transition-all duration-500 overflow-hidden`}
               >
-                <div className="lg:w-1/2 h-80 lg:h-96 relative overflow-hidden">
+                {/* IMAGE */}
+                <div className="lg:w-1/2 h-80 lg:h-[26rem] overflow-hidden rounded-[2.5rem]">
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="w-full h-full object-cover rounded-[2.5rem] transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  <div
-                    className={`absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-500`}
-                  ></div>
                 </div>
 
-                <div className="lg:w-1/2 p-8 lg:p-12">
+                {/* CONTENT */}
+                <div className="lg:w-1/2 p-8 lg:p-14 flex flex-col justify-center">
+                  {/* Icon */}
                   <div
-                    className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} mb-6 group-hover:scale-110 transition-transform duration-300`}
+                    className={`mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${service.gradient} shadow-lg`}
                   >
                     <service.icon className="h-8 w-8 text-white" />
                   </div>
 
+                  {/* Title */}
                   <h3 className="text-3xl font-bold text-gray-900 mb-4">
                     {service.title}
                   </h3>
 
-                  <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                  {/* Description */}
+                  <p className="text-gray-600 text-lg leading-relaxed mb-6">
                     {service.description}
                   </p>
 
-                  <div className="space-y-3 mb-8">
+                  {/* Features */}
+                  <ul className="space-y-3 mb-8">
                     {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center space-x-3">
-                        <div
-                          className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.gradient}`}
-                        ></div>
+                      <li key={idx} className="flex items-center gap-3">
+                        <span
+                          className={`h-2.5 w-2.5 rounded-full bg-gradient-to-r ${service.gradient}`}
+                        />
                         <span className="text-gray-700 font-medium">
                           {feature}
                         </span>
-                      </div>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
 
+                  {/* CTA */}
                   <button
                     onClick={() => handleNavigate(service.link)}
-                    className={`group/btn inline-flex items-center space-x-2 bg-gradient-to-r ${service.gradient} text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300`}
+                    className={`inline-flex w-fit items-center gap-3 rounded-full bg-gradient-to-r ${service.gradient} px-8 py-4 text-white font-semibold shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300`}
                   >
-                    <span>Book Now</span>
-                    <ArrowRight className="h-5 w-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                    Book Now
+                    <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </button>
                 </div>
               </div>
