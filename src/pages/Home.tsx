@@ -260,7 +260,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
         {/* Background Video */}
         <video
           className="absolute inset-0 w-full h-full object-cover"
-          src="/hero.mp4"
+          src="/hero4.mp4"
           autoPlay
           muted
           loop
@@ -268,95 +268,18 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
         />
 
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div> */}
 
         {/* Content */}
-        <div className="relative z-10 text-center px-4 sm:px-6 md:px-8 max-w-5xl mx-auto">
-          <div className="animate-fade-in-up">
-            {/* Badge */}
-            <div className="inline-flex flex-wrap items-center justify-center space-x-2 bg-white/10 backdrop-blur-md px-3 sm:px-4 py-2 rounded-full mb-6 border border-white/20">
-              <Sparkles className="h-4 w-4 text-yellow-300" />
-              <span className="text-white text-xs sm:text-sm font-medium">
-                Trusted by 50,000+ travelers worldwide
-              </span>
-            </div>
+       
 
-            <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-white mb-4 sm:mb-6 leading-tight text-center">
-              <TextType
-                text={["Plan", "Book", "Travel"]}
-                typingSpeed={80}
-                pauseDuration={1500}
-                showCursor={true}
-                cursorCharacter="."
-              />
-              <br /> With <br />
-              <span className="relative inline-block">
-                <span
-                  ref={titleRef}
-                  className="inline-block tracking-wide bg-gradient-to-r from-orange-400 via-pink-500 to-red-500 bg-clip-text text-transparent animate-gradient-x"
-                  style={{
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    fontFamily: "'Pacifico', cursive",
-                  }}
-                >
-                  Arihant Tours
-                </span>
-              </span>
-            </h1>
-
-            {/* Subtitle */}
-            <p className="text-base sm:text-xl md:text-2xl text-gray-200 mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed">
-              Discover extraordinary destinations, create unforgettable
-              memories, and experience the world like never before
-            </p>
-
-            {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center px-2">
-              <button
-                onClick={() => handleNavigate("packages")}
-                className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:shadow-2xl hover:scale-105 transform transition-all duration-300 flex items-center justify-center space-x-2"
-              >
-                <span>Explore Destinations</span>
-                <MapPin className="h-4 w-4 sm:h-5 sm:w-5" />
-              </button>
-
-              <button
-                onClick={() => handleNavigate("videos")}
-                className="bg-white/10 backdrop-blur-md text-white border-2 border-white/30 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white/20 transition-all duration-300"
-              >
-                Watch Video
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
-          <div className="w-5 h-9 sm:w-6 sm:h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
-            <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
-          </div>
-        </div>
+       
       </section>
 
-      {/* OFFERS BANNER */}
-      <section className="py-4 bg-gradient-to-r from-orange-600 to-red-600 overflow-hidden">
-        <div className="animate-scroll whitespace-nowrap flex items-center space-x-12">
-          {[...offers, ...offers].map((offer, index) => (
-            <div
-              key={index}
-              className="inline-flex items-center space-x-3 px-6"
-            >
-              <Tag className="h-5 w-5 text-yellow-300" />
-              <span className="text-white font-bold text-lg">
-                {offer.discount}
-              </span>
-              <span className="text-white/90">{offer.title}</span>
-              <span className="text-yellow-300">•</span>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/*DEALS OF THE DAY */}
+
+      <DealsOfTheDay />
+     
 
       {/* STATS SECTION */}
       <section className="py-20 bg-white">
@@ -378,7 +301,6 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
         </div>
       </section>
 
-      <DealsOfTheDay />
 
       {/* OUR SERVICES - Interactive Section */}
       <section className="py-24 bg-white">
