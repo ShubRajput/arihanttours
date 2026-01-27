@@ -257,15 +257,17 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
     <div className="min-h-screen">
       {/* HERO SECTION with Video Background */}
       <section className="relative h-[90vh] md:h-screen flex items-center justify-center overflow-hidden pt-24 sm:pt-0">
-        {/* Background Video */}
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          src="/hero4.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
+        {/* Background Video - YouTube Embed */}
+        <div className="absolute inset-0 overflow-hidden bg-black">
+          <iframe
+            className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+            src="https://www.youtube.com/embed/_psikEHV9m8?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=_psikEHV9m8&start=27&iv_load_policy=3&playsinline=1"
+            title="Hero background"
+            frameBorder="0"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
 
         {/* Dark Overlay */}
         {/* <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div> */}
