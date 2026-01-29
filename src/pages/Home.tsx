@@ -259,7 +259,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
       <section
         className="
     relative
-    h-[120vh]        /* tall mobile hero */
+    h-[100vh]        /* tall mobile hero */
     sm:h-[100vh]
     md:h-screen
     overflow-hidden
@@ -272,7 +272,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
             className="
       absolute
       top-1/2 left-1/2
-      w-[400%]        /* 🔥 key fix */
+      w-[400%]
       h-[140%]
       sm:w-[250%]
       sm:h-[120%]
@@ -282,7 +282,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps = {}) {
       -translate-y-1/2
       pointer-events-none
     "
-            src="https://www.youtube.com/embed/lRNYi0JeEEY?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=lRNYi0JeEEY&playsinline=1"
+            src="https://www.youtube.com/embed/G2CQNw60z5E?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=G2CQNw60z5E&playsinline=1"
             title="Hero background"
             frameBorder="0"
             allow="autoplay; encrypted-media; picture-in-picture"
